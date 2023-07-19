@@ -6,7 +6,7 @@ export PATH="$PNPM_HOME:$PATH"
 alias cd='z'
 alias ls='exa'
 alias tree='exa -T'
-alias cdi='z $(fd -d 4 -t d | fzf)'
+alias cdi='z "$(fd -d 4 -t d | fzf)"'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 eval "$(zoxide init zsh)"
