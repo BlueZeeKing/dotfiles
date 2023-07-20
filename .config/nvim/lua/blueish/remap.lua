@@ -7,6 +7,8 @@ vim.keymap.set("n", "<C-]>", vim.cmd.tabnext)
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
+vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit)
+
 -- vim.keymap.set("n", "x", "d")
 -- vim.keymap.set("n", "z", "a")
 -- vim.keymap.set("n", "d", "w")
