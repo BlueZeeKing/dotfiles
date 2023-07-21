@@ -5,7 +5,9 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	'tsserver',
 	'rust_analyzer',
-    'java_language_server'
+    'jdtls',
+    'taplo',
+    'gopls'
 })
 
 lsp.on_attach(function(client, bufnr)
