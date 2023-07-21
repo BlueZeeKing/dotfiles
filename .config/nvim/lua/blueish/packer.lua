@@ -56,4 +56,5 @@ return require('packer').startup(function(use)
   use 'dstein64/vim-startuptime'
   use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
+  use 'phaazon/hop.nvim'
 end)
