@@ -57,4 +57,6 @@ return require('packer').startup(function(use)
   use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'phaazon/hop.nvim'
+  use 'wakatime/vim-wakatime'
+  use 'nvim-telescope/telescope-ui-select.nvim'
 end)

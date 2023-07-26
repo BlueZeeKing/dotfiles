@@ -16,6 +16,8 @@ source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
+export EDITOR="nvim"
+
 # fpath+="${HOME}/zsh-plugins"
 # fpath+="${HOME}/zsh-plugins/zsh-completions/src"
 

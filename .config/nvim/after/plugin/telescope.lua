@@ -16,3 +16,11 @@ vim.keymap.set('n', '<leader>d', builtin.diagnostics, {})
 -- }
 --
 -- require('telescope').load_extension "file_browser"
+
+require('telescope').setup {
+    extensions = { ["ui-select"] = {
+        require("telescope.themes").get_dropdown {}
+    } }
+}
+
+require("telescope").load_extension("ui-select")
