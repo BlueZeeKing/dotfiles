@@ -55,4 +55,5 @@ return require('packer').startup(function(use)
     use 'simrat39/symbols-outline.nvim'
     use 'echasnovski/mini.nvim'
     use 'BlueZeeKing/dressing.nvim'
+    use 'windwp/nvim-autopairs'
 end)
