@@ -12,3 +12,6 @@ vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit)
 vim.keymap.set("n", "<leader>hh", vim.cmd.HopChar2)
 vim.keymap.set("n", "<leader>hw", vim.cmd.HopWord)
 
+vim.keymap.set("n", "<leader>so", vim.cmd.SymbolsOutline)
+
+vim.keymap.set("n", "<Esc>", "")

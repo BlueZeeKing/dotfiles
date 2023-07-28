@@ -13,10 +13,8 @@ return require('packer').startup(function(use)
   }
   
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  -- use('nvim-treesitter/playground')
   use('ThePrimeagen/harpoon')
   use('mbbill/undotree')
-  -- use('tpope/vim-fugitive')
   use('BlueZeeKing/onedark.nvim')
   use('nvim-tree/nvim-tree.lua')
   use('nvim-tree/nvim-web-devicons')
@@ -46,17 +44,15 @@ return require('packer').startup(function(use)
           {'L3MON4D3/LuaSnip'},     -- Required
       }
   }
-  use('numToStr/Comment.nvim')
   use('ThePrimeagen/vim-be-good')
   use 'karb94/neoscroll.nvim'
-  -- use {
-  --     "nvim-telescope/telescope-file-browser.nvim",
-  --     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  -- }
   use 'dstein64/vim-startuptime'
   use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'phaazon/hop.nvim'
   use 'wakatime/vim-wakatime'
   use 'nvim-telescope/telescope-ui-select.nvim'
+  use 'simrat39/symbols-outline.nvim'
+  use 'echasnovski/mini.nvim'
 end)
+
