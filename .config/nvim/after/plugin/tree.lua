@@ -3,9 +3,9 @@ local WIDTH_RATIO = 0.5
 
 require("nvim-tree").setup({
     hijack_netrw = false,
-	filters = {
-		dotfiles = true,
-	},
+    filters = {
+        dotfiles = true,
+    },
     view = {
         relativenumber = true,
         float = {
@@ -19,7 +19,7 @@ require("nvim-tree").setup({
                 local window_h_int = math.floor(window_h)
                 local center_x = (screen_w - window_w) / 2
                 local center_y = ((vim.opt.lines:get() - window_h) / 2)
-                - vim.opt.cmdheight:get()
+                    - vim.opt.cmdheight:get()
                 return {
                     border = 'rounded',
                     relative = 'editor',
@@ -38,6 +38,5 @@ require("nvim-tree").setup({
         enable = true
     },
 })
-
 
 require('nvim-web-devicons').setup()

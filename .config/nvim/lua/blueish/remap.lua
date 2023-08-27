@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit)
 
 vim.keymap.set("n", "<leader>hh", function()
-    vim.ui.input({ prompt = "Hop 2 char", length = 2 }, function(response)
+    vim.ui.input({ prompt = "", length = 2, width = 5 }, function(response)
         local hop = require('hop')
         local jump_target = require('hop.jump_target')
 
@@ -23,4 +23,4 @@ vim.keymap.set("n", "<leader>hw", vim.cmd.HopWord)
 
 vim.keymap.set("n", "<leader>so", vim.cmd.SymbolsOutline)
 
-vim.keymap.set("n", "<Esc>", "")
+vim.keymap.set("n", "<Esc>", vim.cmd.NvimTreeClose)

@@ -44,9 +44,7 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },     -- Required
         }
     }
-    use('ThePrimeagen/vim-be-good')
     use 'karb94/neoscroll.nvim'
-    use 'dstein64/vim-startuptime'
     use 'kdheepak/lazygit.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'phaazon/hop.nvim'
@@ -55,5 +53,6 @@ return require('packer').startup(function(use)
     use 'simrat39/symbols-outline.nvim'
     use 'echasnovski/mini.nvim'
     use 'BlueZeeKing/dressing.nvim'
-    use 'windwp/nvim-autopairs'
+    use 'mfussenegger/nvim-jdtls'
+    -- use "elihunter173/dirbuf.nvim"
 end)
