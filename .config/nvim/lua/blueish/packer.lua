@@ -44,7 +44,6 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },     -- Required
         }
     }
-    use 'karb94/neoscroll.nvim'
     use 'kdheepak/lazygit.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'phaazon/hop.nvim'

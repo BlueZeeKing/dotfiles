@@ -27,3 +27,7 @@ vim.keymap.set("n", "<Esc>", vim.cmd.NvimTreeClose)
 
 vim.keymap.set("n", "<M-c>", "\"*y")
 vim.keymap.set("n", "<M-v>", "\"*p")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>tr', builtin.resume, {})
+vim.keymap.set('n', '<leader>tt', builtin.treesitter, {})
