@@ -20,8 +20,12 @@ function cdi {
     fi
 }
 
+export PATH="$HOME/scripts:$PATH"
+
 source $(brew --prefix)/opt/spaceship/spaceship.zsh
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 

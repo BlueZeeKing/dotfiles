@@ -24,3 +24,6 @@ vim.keymap.set("n", "<leader>hw", vim.cmd.HopWord)
 vim.keymap.set("n", "<leader>so", vim.cmd.SymbolsOutline)
 
 vim.keymap.set("n", "<Esc>", vim.cmd.NvimTreeClose)
+
+vim.keymap.set("n", "<M-c>", "\"*y")
+vim.keymap.set("n", "<M-v>", "\"*p")
