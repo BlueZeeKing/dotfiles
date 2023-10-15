@@ -5,26 +5,17 @@ lsp.preset("recommended")
 lsp.ensure_installed({
     'tsserver',
     'rust_analyzer',
-    'jdtls',
     'taplo',
     'gopls',
 })
 
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
-    lsp.buffer_autoformat()
 end)
 
-lsp.skip_server_setup({ 'rust_analyzer' })
+lsp.skip_server_setup({ 'rust_analyzer', 'jdtls' })
 
 lsp.setup()
-
-require('lspconfig').html.setup({
-    on_init = function(client)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentFormattingRangeProvider = false
-    end,
-})
 
 local rust_tools = require('rust-tools')
 
@@ -36,6 +27,6 @@ local cmp = require('cmp')
 
 cmp.setup({
     mapping = {
-        ['<Tab>'] = cmp.mapping.confirm({ select = false }),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }
 })

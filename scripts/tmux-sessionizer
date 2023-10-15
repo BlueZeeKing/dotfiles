@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~/Desktop/Rust ~/Desktop/Java --exact-depth 1 --type d | fzf)
+    selected=$(fd . ~/Documents/Coding/Rust ~/Documents/Coding/Java ~/Documents/Coding/Other ~/Documents/Coding/BigRepos --exact-depth 1 --type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

@@ -1,7 +1,10 @@
-export PATH="$HOME/mongosh/bin:/opt/homebrew/bin:/opt/homebrew/Cellar/postgresql@15/15.2_3/bin:$HOME/.gradle/toolchains/frc/2023/roborio/bin:$HOME/gn/out/bin:$PATH"
+export PATH="$HOME/mongosh/bin:/opt/homebrew/bin:/opt/homebrew/Cellar/postgresql@15/15.2_3/bin:$HOME/gn/out/bin:$PATH"
 
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+export RIOSDK_PATH="$HOME/roborio-academic"
+export PATH="$RIOSDK_PATH/bin:$PATH"
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -40,3 +43,11 @@ export EDITOR="nvim"
 fortune -s -n 40
 echo
 
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

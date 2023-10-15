@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeFocus)
-vim.keymap.set('t', '<Esc>', "<C-\\><C-n><C-w>h", { silent = true })
+
+local oil = require('oil')
+
+vim.keymap.set("n", "<leader>pv", function()
+    oil.open_float()
+end)
 
 vim.keymap.set("n", "<C-M-[>", vim.cmd.tabprevious)
 vim.keymap.set("n", "<C-M-]>", vim.cmd.tabnext)
@@ -23,10 +27,10 @@ vim.keymap.set("n", "<leader>hw", vim.cmd.HopWord)
 
 vim.keymap.set("n", "<leader>so", vim.cmd.SymbolsOutline)
 
-vim.keymap.set("n", "<Esc>", vim.cmd.NvimTreeClose)
-
 vim.keymap.set("n", "<M-c>", "\"*y")
 vim.keymap.set("n", "<M-v>", "\"*p")
+
+vim.keymap.set("n", "<Esc>", "")
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>tr', builtin.resume, {})

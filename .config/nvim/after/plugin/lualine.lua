@@ -27,7 +27,4 @@ require("lualine").setup {
         lualine_y = { 'encoding', 'filetype' },
         lualine_z = { 'location' }
     },
-    extensions = {
-        'nvim-tree'
-    },
 }

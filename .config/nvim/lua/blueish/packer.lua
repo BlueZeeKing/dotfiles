@@ -16,7 +16,6 @@ return require('packer').startup(function(use)
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
     use('BlueZeeKing/onedark.nvim')
-    use('nvim-tree/nvim-tree.lua')
     use('nvim-tree/nvim-web-devicons')
     use('neovim/nvim-lspconfig')
     use('simrat39/rust-tools.nvim')
@@ -53,5 +52,16 @@ return require('packer').startup(function(use)
     use 'echasnovski/mini.nvim'
     use 'BlueZeeKing/dressing.nvim'
     use 'mfussenegger/nvim-jdtls'
-    -- use "elihunter173/dirbuf.nvim"
+    use {
+        'stevearc/oil.nvim',
+    }
+    use 'rcarriga/nvim-notify'
+    use({
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+    })
+    use 'folke/todo-comments.nvim'
+    use 'folke/trouble.nvim'
+    use 'mhartington/formatter.nvim'
 end)
