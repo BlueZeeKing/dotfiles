@@ -1,37 +1,11 @@
 vim.g.mapleader = " "
 
-local oil = require('oil')
-
-vim.keymap.set("n", "<leader>pv", function()
-    oil.open_float()
-end)
-
 vim.keymap.set("n", "<C-M-[>", vim.cmd.tabprevious)
 vim.keymap.set("n", "<C-M-]>", vim.cmd.tabnext)
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
-vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit)
-
-vim.keymap.set("n", "<leader>hh", function()
-    vim.ui.input({ prompt = "", length = 2, width = 5 }, function(response)
-        local hop = require('hop')
-        local jump_target = require('hop.jump_target')
-
-        hop.hint_with(
-            jump_target.jump_targets_by_scanning_lines(jump_target.regex_by_case_searching(response, true, hop.opts)),
-            hop.opts)
-    end)
-end)
-vim.keymap.set("n", "<leader>hw", vim.cmd.HopWord)
-
-vim.keymap.set("n", "<leader>so", vim.cmd.SymbolsOutline)
-
-vim.keymap.set("n", "<M-c>", "\"*y")
-vim.keymap.set("n", "<M-v>", "\"*p")
+vim.keymap.set("v", "<M-c>", '"*y')
+vim.keymap.set("v", "<M-v>", '"*p')
 
 vim.keymap.set("n", "<Esc>", "")
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>tr', builtin.resume, {})
-vim.keymap.set('n', '<leader>tt', builtin.treesitter, {})
