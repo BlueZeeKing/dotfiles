@@ -11,6 +11,8 @@ return {
 						current_line_only = true,
 					})
 				end,
+				mode = "",
+				remap = true,
 			},
 			{
 				"F",
@@ -20,6 +22,8 @@ return {
 						current_line_only = true,
 					})
 				end,
+				mode = "",
+				remap = true,
 			},
 
 			{
@@ -31,6 +35,8 @@ return {
 						hint_offset = -1,
 					})
 				end,
+				mode = "",
+				remap = true,
 			},
 			{
 				"T",
@@ -41,6 +47,8 @@ return {
 						hint_offset = -1,
 					})
 				end,
+				mode = "",
+				remap = true,
 			},
 			{
 				"<leader>hh",
@@ -61,6 +69,10 @@ return {
 			{
 				"<leader>hw",
 				"<cmd>HopWord<cr>",
+			},
+			{
+				"∆",
+				"<cmd>HopLineStart<cr>",
 			},
 		},
 	},

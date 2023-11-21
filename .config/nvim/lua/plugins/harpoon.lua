@@ -29,25 +29,25 @@ return {
 			},
 
 			{
-				"m1",
+				"mq",
 				function()
 					require("harpoon.ui").nav_file(1)
 				end,
 			},
 			{
-				"m2",
+				"mw",
 				function()
 					require("harpoon.ui").nav_file(2)
 				end,
 			},
 			{
-				"m3",
+				"me",
 				function()
 					require("harpoon.ui").nav_file(3)
 				end,
 			},
 			{
-				"m4",
+				"mr",
 				function()
 					require("harpoon.ui").nav_file(4)
 				end,

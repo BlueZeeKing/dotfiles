@@ -7,7 +7,11 @@ local config = {
 				runtimes = {
 					{
 						name = "FRC-11",
-						path = "/Users/braydenzee/wpilib/2023/jdk/",
+						path = "/Users/braydenzee/wpilib/2023/jdk",
+					},
+					{
+						name = "Java-21",
+						path = "/Users/braydenzee/amazon-corretto-21.jdk/Contents/Home",
 					},
 				},
 			},

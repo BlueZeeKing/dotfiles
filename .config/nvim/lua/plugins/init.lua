@@ -19,7 +19,6 @@ return {
 		{ "<leader>gg", "<cmd>LazyGit<cr>" },
 	} },
 	{ "lewis6991/gitsigns.nvim", config = true },
-	"wakatime/vim-wakatime",
 	{
 		"simrat39/symbols-outline.nvim",
 		config = true,
@@ -33,11 +32,6 @@ return {
 			require("mini.surround").setup()
 			require("mini.comment").setup()
 		end,
-	},
-	"BlueZeeKing/dressing.nvim",
-	{
-		"mfussenegger/nvim-jdtls",
-		ft = "java",
 	},
 	{
 		"stevearc/oil.nvim",
@@ -61,7 +55,36 @@ return {
 			},
 		},
 	},
-	"rcarriga/nvim-notify",
-	{ "folke/trouble.nvim", config = true },
-	"mhartington/formatter.nvim",
+	{
+		"folke/trouble.nvim",
+		opts = { position = "right" },
+		keys = { {
+			"<leader>xw",
+			function()
+				require("trouble").toggle("workspace_diagnostics")
+			end,
+		} },
+	},
+	"wakatime/vim-wakatime",
+	"BlueZeeKing/dressing.nvim",
+    { 
+        "rcarriga/nvim-notify",
+        config = function(_, _) 
+            vim.notify = require("notify")
+        end
+    },
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	event = "InsertEnter",
+	-- 	opts = {
+	-- 		suggestion = { enabled = false },
+	-- 		panel = { enabled = false },
+	-- 	},
+	-- },
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- },
 }

@@ -1,0 +1,15 @@
+-- vim.keymap.set("i", "<Enter>", function() 
+--     local buf = vim.api.nvim_get_current_buf()
+--     local cursor = vim.api.nvim_win_get_cursor(0)
+--     local row = cursor[1] - 1
+--     local col = cursor[2]
+--     local text = string.gsub(vim.api.nvim_buf_get_text(buf, row, 0, row, -1, {})[1], "%s+", "")
+--
+--     if text:sub(1, 1) == "-" then
+--         vim.api.nvim_buf_set_lines(buf, row + 1, row + 1, false, { "- " })
+--         vim.api.nvim_win_set_cursor(0, { row + 2, 2 })
+--     else
+--         vim.api.nvim_buf_set_lines(buf, row + 1, row + 1, false, { "" })
+--         vim.api.nvim_win_set_cursor(0, { row + 2, 0 })
+--     end
+-- end)
