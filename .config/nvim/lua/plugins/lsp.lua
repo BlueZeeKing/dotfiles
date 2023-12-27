@@ -10,8 +10,14 @@ return {
 		"simrat39/rust-tools.nvim",
 		ft = "rust",
 		opts = {
-			inlay_hints = {
-				show_parameter_hints = false,
+			server = {
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							allTargets = false,
+						},
+					},
+				},
 			},
 		},
 		config = function(_, opts)

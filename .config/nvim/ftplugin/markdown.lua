@@ -1,4 +1,4 @@
--- vim.keymap.set("i", "<Enter>", function() 
+-- vim.keymap.set("i", "<Enter>", function()
 --     local buf = vim.api.nvim_get_current_buf()
 --     local cursor = vim.api.nvim_win_get_cursor(0)
 --     local row = cursor[1] - 1

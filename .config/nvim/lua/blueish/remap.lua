@@ -10,3 +10,5 @@ vim.keymap.set("", "<M-c>", '"*y')
 vim.keymap.set("", "<M-v>", '"*p')
 
 vim.keymap.set("n", "<Esc>", "")
+
+vim.api.nvim_create_user_command("W", "w", {})

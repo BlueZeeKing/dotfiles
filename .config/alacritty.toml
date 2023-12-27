@@ -1,0 +1,33 @@
+[window]
+padding = { x = 8, y = 8 }
+startup_mode = "Maximized"
+# decorations = "Transparent"
+
+[font]
+normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
+size = 12.5
+
+[colors.primary]
+background = "#1f2329"
+foreground = "#DDDDDD"
+
+[colors.normal]
+black = "#767676"
+red = "#f2201f"
+green = "#23fd00"
+yellow = "#fffd00"
+blue = "#1a8fff"
+magenta = "#fd28ff"
+cyan = "#14ffff"
+white = "#ffffff"
+
+[colors.dim]
+cyan = "#0dcdcd"
+red = "#cc0403"
+yellow = "#cecb00"
+magenta = "#cb1ed1"
+black = "#000000"
+green = "#19cb00"
+blue = "#0d73cc"
+white = "#dddddd"
+

@@ -67,12 +67,12 @@ return {
 	},
 	"wakatime/vim-wakatime",
 	"BlueZeeKing/dressing.nvim",
-    { 
-        "rcarriga/nvim-notify",
-        config = function(_, _) 
-            vim.notify = require("notify")
-        end
-    },
+	{
+		"rcarriga/nvim-notify",
+		config = function(_, _)
+			vim.notify = require("notify")
+		end,
+	},
 	-- {
 	-- 	"zbirenbaum/copilot.lua",
 	-- 	event = "InsertEnter",
