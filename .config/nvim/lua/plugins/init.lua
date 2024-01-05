@@ -20,13 +20,6 @@ return {
 	} },
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{
-		"simrat39/symbols-outline.nvim",
-		config = true,
-		keys = {
-			{ "<leader>so", "<cmd>SymbolsOutline<cr>" },
-		},
-	},
-	{
 		"echasnovski/mini.nvim",
 		config = function(_, _)
 			require("mini.surround").setup()

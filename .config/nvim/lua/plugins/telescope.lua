@@ -52,6 +52,12 @@ return {
 					require("telescope.builtin").treesitter()
 				end,
 			},
+			{
+				"<leader>so",
+				function()
+					require("telescope.builtin").lsp_document_symbols()
+				end,
+			},
 		},
 		config = function(_, _)
 			require("telescope").setup({
