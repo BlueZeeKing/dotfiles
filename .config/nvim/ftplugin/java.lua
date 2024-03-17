@@ -6,12 +6,12 @@ local config = {
 			configuration = {
 				runtimes = {
 					{
-						name = "FRC-11",
-						path = "/Users/braydenzee/wpilib/2023/jdk",
+						name = "JavaSE-17",
+						path = "/Users/braydenzee/wpilib/2024/jdk/",
 					},
 					{
-						name = "Java-21",
-						path = "/Users/braydenzee/amazon-corretto-21.jdk/Contents/Home",
+						name = "JavaSE-11",
+						path = "/Users/braydenzee/wpilib/2023/jdk/",
 					},
 				},
 			},
@@ -20,7 +20,3 @@ local config = {
 }
 
 require("jdtls").start_or_attach(config)
-
--- vim.opt.tabstop = 2
--- vim.opt.softtabstop = 2
--- vim.opt.shiftwidth = 2

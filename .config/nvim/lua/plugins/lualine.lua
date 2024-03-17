@@ -1,7 +1,32 @@
+local word_count_shown = false
+
+local function words()
+	if word_count_shown then
+		local count = vim.fn.wordcount()
+		if count.visual_words == nil then
+			return count.words .. " words"
+		else
+			return count.visual_words .. " selected words"
+		end
+	else
+		return ""
+	end
+end
+
+vim.keymap.set("n", "<leader>wc", function()
+	word_count_shown = not word_count_shown
+end)
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	callback = function(args)
+		word_count_shown = vim.bo[args.buf].filetype == "markdown"
+	end,
+})
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "arkav/lualine-lsp-progress" },
 		opts = {
 			options = {
 				component_separators = { left = "|", right = "|" },
@@ -14,7 +39,13 @@ return {
 					"diff",
 					{ "diagnostics", symbols = { error = "E ", warn = "W ", info = "I ", hint = "H " } },
 				},
-				lualine_c = { "filename" },
+				lualine_c = {
+					"filename",
+					-- {
+					-- 	"lsp_progress",
+					-- 	display_components = { "lsp_client_name", { "title", "percentage" } },
+					-- },
+				},
 				lualine_x = {
 					{
 						"tabs",
@@ -31,9 +62,10 @@ return {
 						end,
 					},
 				},
-				lualine_y = { "encoding", "filetype" },
+				lualine_y = { words, "encoding", "filetype" },
 				lualine_z = { "progress", "location" },
 			},
 		},
 	},
+	{ "arkav/lualine-lsp-progress" },
 }

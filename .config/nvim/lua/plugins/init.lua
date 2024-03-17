@@ -6,7 +6,7 @@ return {
 		},
 	},
 	{
-		"BlueZeeKing/onedark.nvim",
+		"navarasu/onedark.nvim",
 		opts = { style = "darker" },
 		config = function(_, opts)
 			require("onedark").setup(opts)
@@ -15,15 +15,12 @@ return {
 		priority = 1000,
 	},
 	{ "nvim-tree/nvim-web-devicons", config = true },
-	{ "kdheepak/lazygit.nvim", keys = {
-		{ "<leader>gg", "<cmd>LazyGit<cr>" },
-	} },
-	{ "lewis6991/gitsigns.nvim", config = true },
 	{
 		"echasnovski/mini.nvim",
 		config = function(_, _)
 			require("mini.surround").setup()
 			require("mini.comment").setup()
+			require("mini.bracketed").setup()
 		end,
 	},
 	{
@@ -60,24 +57,16 @@ return {
 	},
 	"wakatime/vim-wakatime",
 	"BlueZeeKing/dressing.nvim",
+	"folke/tokyonight.nvim",
+	"tpope/vim-sleuth",
 	{
-		"rcarriga/nvim-notify",
-		config = function(_, _)
-			vim.notify = require("notify")
+		"github/copilot.vim",
+		config = function()
+			vim.keymap.set("i", "<Right>", 'copilot#Accept("\\<CR>")', {
+				expr = true,
+				replace_keycodes = false,
+			})
+			vim.g.copilot_no_tab_map = true
 		end,
 	},
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	event = "InsertEnter",
-	-- 	opts = {
-	-- 		suggestion = { enabled = false },
-	-- 		panel = { enabled = false },
-	-- 	},
-	-- },
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	config = function()
-	-- 		require("copilot_cmp").setup()
-	-- 	end,
-	-- },
 }

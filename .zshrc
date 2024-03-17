@@ -4,7 +4,10 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 export RIOSDK_PATH="$HOME/roborio-academic"
-export PATH="$RIOSDK_PATH/bin:$PATH"
+export PATH="$RIOSDK_PATH/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -28,11 +31,8 @@ function cdi {
 export PATH="$HOME/scripts:$PATH"
 
 source $(brew --prefix)/opt/spaceship/spaceship.zsh
-source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
 export EDITOR="nvim"
 
@@ -43,20 +43,14 @@ export EDITOR="nvim"
 # compinit -i
 
 fortune -s -n 40
-echo
-
 
 # pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
+export PNPM_HOME="/Users/braydenzee/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-export VOLTA_FEATURE_PNPM=1
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 

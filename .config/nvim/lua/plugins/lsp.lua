@@ -30,4 +30,30 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = "java",
 	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			notification = {
+				window = {
+					winblend = 10,
+				},
+			},
+		},
+		config = function(_, opts)
+			require("fidget").setup(opts)
+			vim.notify = require("fidget").notify
+		end,
+	},
+	{
+		"wojciech-kulik/xcodebuild.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require("xcodebuild").setup({
+				-- put some options here or leave it empty to use default settings
+			})
+		end,
+	},
 }

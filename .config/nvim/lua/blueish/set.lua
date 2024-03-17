@@ -32,3 +32,10 @@ vim.opt.colorcolumn = "80"
 vim.opt.showtabline = 0
 
 vim.diagnostic.config({ severity_sort = true })
+
+vim.o.clipboard = "unnamedplus"
+
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+vim.o.completeopt = "menuone,noselect"

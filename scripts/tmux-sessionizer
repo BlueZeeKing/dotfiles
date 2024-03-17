@@ -22,5 +22,8 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
 fi
 
+# tmux list-panes -s -F "#{session_name}:#{window_index}.#{pane_index}" | xargs -I{} sh -c 'tmux send-keys -t {} "C-!"'
+
 tmux switch-client -t $selected_name
 
+# tmux list-panes -s -F "#{session_name}:#{window_index}.#{pane_index}" | xargs -I{} sh -c 'tmux send-keys -t {} "C-#"'
