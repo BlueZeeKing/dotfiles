@@ -1,0 +1,22 @@
+import = [
+    "~/.config/alacritty/alacritty-theme/themes/smoooooth.toml"
+]
+
+[window]
+padding = { x = 8, y = 8 }
+# startup_mode = "Maximized"
+# decorations = "Buttonless"
+
+[font]
+normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
+size = 12.5
+
+[colors.primary]
+background = "#1f2329"
+
+[scrolling]
+history = 1000
+
+# [colors.cursor]
+# text = "#000000"
+# cursor = "#cccccc"
