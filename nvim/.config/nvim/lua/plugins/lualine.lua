@@ -41,10 +41,7 @@ return {
 				},
 				lualine_c = {
 					"filename",
-					-- {
-					-- 	"lsp_progress",
-					-- 	display_components = { "lsp_client_name", { "title", "percentage" } },
-					-- },
+					"searchcount",
 				},
 				lualine_x = {
 					{
