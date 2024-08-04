@@ -18,8 +18,8 @@ alias java21="export PATH=\"$HOME/java/amazon-corretto-21.jdk/Contents/Home/bin:
 java21
 
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/zsh-plugins/spaceship/spaceship.zsh
 
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
@@ -40,5 +40,6 @@ function cdi {
 
 export EDITOR="nvim"
 
-fortune -s -n 40
-
+# fortune -s -n 40
+export PATH="/Users/braydenzee/sparta-replacement/bin/:$PATH"
+export PATH="/Users/braydenzee/sparta-replacement/bin/:$PATH"

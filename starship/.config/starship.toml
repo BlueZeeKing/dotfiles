@@ -1,0 +1,17 @@
+format = "$sudo$directory$git_branch$rust$java$cmd_duration$character"
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[rust]
+format = "via [$symbol$toolchain ]($style)"
+
+[java]
+style = "red"
+symbol = "☕"
+
+[sudo]
+format = "[$symbol ]($style)"
+symbol = "🔒"
+disabled = false

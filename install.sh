@@ -6,7 +6,7 @@ stow gh
 stow lazygit
 stow nvim
 stow scripts
-stow spaceship
+stow starship
 stow tmux
 stow zsh
 
