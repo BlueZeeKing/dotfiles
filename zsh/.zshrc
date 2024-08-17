@@ -11,10 +11,10 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 export PATH="$HOME/neovim/bin:$PATH"
 
-alias java8="export PATH=\"$HOME/java/amazon-corretto-8.jdk/Contents/Home/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-8.jdk/Contents/Home/\""
-alias java11="export PATH=\"$HOME/java/amazon-corretto-11.jdk/Contents/Home/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-11.jdk/Contents/Home/\""
-alias java17="export PATH=\"$HOME/java/amazon-corretto-17.jdk/Contents/Home/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-17.jdk/Contents/Home/\""
-alias java21="export PATH=\"$HOME/java/amazon-corretto-21.jdk/Contents/Home/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-21.jdk/Contents/Home/\""
+alias java8="export PATH=\"$HOME/java/amazon-corretto-8.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-8.jdk/\""
+alias java11="export PATH=\"$HOME/java/amazon-corretto-11.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-11.jdk/\""
+alias java17="export PATH=\"$HOME/java/amazon-corretto-17.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-17.jdk/\""
+alias java21="export PATH=\"$HOME/java/amazon-corretto-21.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-21.jdk/\""
 
 java21
 
