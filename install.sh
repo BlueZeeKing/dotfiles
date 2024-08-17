@@ -9,6 +9,7 @@ stow scripts
 stow starship
 stow tmux
 stow zsh
+stow dunst
 stow hypr
 stow waybar
 
