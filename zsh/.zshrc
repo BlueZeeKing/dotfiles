@@ -1,8 +1,9 @@
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/go/bin:$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.atuin/bin:$PATH"
 
-export RIOSDK_PATH="$HOME/roborio-academic"
+export RIOSDK_PATH="$HOME/roborio-toolchain"
 export PATH="$RIOSDK_PATH/bin:$PATH"
 
 export WASMTIME_HOME="$HOME/.wasmtime"
@@ -24,8 +25,9 @@ eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
 alias cd='z'
-alias ls='exa'
-alias tree='exa -T'
+alias ls='eza'
+alias tree='eza -T'
+alias open='xdg-open'
 
 alias clear='clear; tmux clear-history'
 
@@ -39,7 +41,8 @@ function cdi {
 }
 
 export EDITOR="nvim"
+export TERMINAL="alacritty"
 
-# fortune -s -n 40
-export PATH="/Users/braydenzee/sparta-replacement/bin/:$PATH"
-export PATH="/Users/braydenzee/sparta-replacement/bin/:$PATH"
+fortune -s -n 40
+
+. "$HOME/.atuin/bin/env"
