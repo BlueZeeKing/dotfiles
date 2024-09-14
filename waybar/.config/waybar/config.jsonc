@@ -13,6 +13,7 @@
         "clock",
     ],
     "modules-right": [
+        "tray",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
@@ -20,8 +21,7 @@
         "memory",
         "temperature",
         "backlight",
-        "battery",
-        "tray"
+        "battery"
     ],
     // Modules configuration
     // "sway/workspaces": {
