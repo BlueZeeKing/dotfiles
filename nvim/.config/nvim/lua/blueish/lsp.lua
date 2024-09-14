@@ -35,10 +35,6 @@ require("cmp").setup({
 	},
 })
 
--- require("lspconfig").sourcekit.setup({
--- 	cmd = { "/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp" },
--- })
-
 require("lspconfig").tailwindcss.setup({
 	filetypes = {
 		"aspnetcorerazor",
