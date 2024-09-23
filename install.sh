@@ -12,6 +12,7 @@ stow zsh
 stow dunst
 stow hypr
 stow waybar
+stow wofi
 
 mkdir ~/zsh-plugins
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/zsh-plugins/zsh-autosuggestions

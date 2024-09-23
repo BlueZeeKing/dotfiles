@@ -29,4 +29,23 @@ return {
 			vim.notify = require("fidget").notify
 		end,
 	},
+	{
+		"jakemason/ouroboros",
+		opts = {
+			extension_preferences_table = {
+				c = { h = 2, hpp = 1 },
+				h = { c = 2, cpp = 1 },
+				cpp = { hpp = 1, h = 2 },
+				hpp = { cpp = 2, c = 1 },
+			},
+		},
+		keys = {
+			{
+				"gh",
+				function()
+					require("ouroboros").switch()
+				end,
+			},
+		},
+	},
 }
