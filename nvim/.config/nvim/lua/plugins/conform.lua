@@ -28,7 +28,8 @@ return {
 					graphql = { "prettier" },
 					handlebars = { "prettier" },
 					svelte = { "prettier" },
-					-- java = { "google-java-format" },
+					java = { "google-java-format" },
+					haskell = { "ormolu" },
 				},
 				formatters = {
 					leptosfmt = {

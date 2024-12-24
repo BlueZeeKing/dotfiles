@@ -1,11 +1,32 @@
 return {
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
+	{ "williamboman/mason.nvim", opts = {} },
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			handlers = {
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+				rust_analyzer = function() end,
+				jdtls = function() end,
+			},
+		},
+	},
 	{ "neovim/nvim-lspconfig" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp" },
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"saghen/blink.cmp",
+		version = "*",
+		opts = {
+			keymap = { preset = "super-tab" },
+			sources = { cmdline = {} },
+			signature = { enabled = true },
+			completion = { documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 0,
+			} },
+		},
+		opts_extend = { "sources.default" },
+	},
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^4",
@@ -44,6 +65,69 @@ return {
 				"gh",
 				function()
 					require("ouroboros").switch()
+				end,
+			},
+		},
+	},
+	{
+		"mfussenegger/nvim-dap",
+		keys = {
+			{
+				"<leader>dl",
+				function()
+					require("dap").step_into()
+				end,
+			},
+			{
+				"<leader>dj",
+				function()
+					require("dap").step_over()
+				end,
+			},
+			{
+				"<leader>dh",
+				function()
+					require("dap").step_out()
+				end,
+			},
+			{
+				"<leader>db",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+			},
+			{
+				"<leader>dc",
+				function()
+					require("dap").continue()
+				end,
+			},
+			{
+				"<leader>dq",
+				function()
+					require("dap").terminate()
+				end,
+			},
+			{
+				"<leader>dr",
+				function()
+					require("dap").repl.toggle()
+				end,
+			},
+			{
+				"<leader>dw",
+				function()
+					local widgets = require("dap.ui.widgets")
+					local left_bar = widgets.sidebar(widgets.frames, {}, "45 vsplit")
+					left_bar.open()
+					local right_bar = widgets.sidebar(widgets.scopes, {}, "belowright 45 vsplit")
+					right_bar.open()
+				end,
+			},
+			{
+				"<leader>dk",
+				function()
+					require("dap.ui.widgets").hover()
 				end,
 			},
 		},

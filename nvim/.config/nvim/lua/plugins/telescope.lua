@@ -35,7 +35,7 @@ return {
 				end,
 			},
 			{
-				"<leader>d",
+				"<leader>ld",
 				function()
 					require("telescope.builtin").diagnostics()
 				end,
