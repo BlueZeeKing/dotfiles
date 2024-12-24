@@ -14,4 +14,4 @@ symbol = "☕"
 [sudo]
 format = "[$symbol ]($style)"
 symbol = "🔒"
-disabled = false
+disabled = true
