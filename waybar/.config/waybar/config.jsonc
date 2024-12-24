@@ -17,6 +17,7 @@
         "pulseaudio",
         "network",
         "power-profiles-daemon",
+        "idle_inhibitor",
         "cpu",
         "memory",
         "temperature",
