@@ -55,7 +55,7 @@ return {
 			end,
 		} },
 	},
-	"wakatime/vim-wakatime",
+	-- "wakatime/vim-wakatime",
 	"stevearc/dressing.nvim",
 	"folke/tokyonight.nvim",
 	"tpope/vim-sleuth",
@@ -63,7 +63,7 @@ return {
 		"letieu/btw.nvim",
 		config = function()
 			require("btw").setup({
-				text = vim.fn.system({ "fortune" }),
+				text = vim.fn.system({ "misfortune" }),
 			})
 		end,
 	},

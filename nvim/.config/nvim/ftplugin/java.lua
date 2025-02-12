@@ -7,19 +7,19 @@ local config = {
 				runtimes = {
 					{
 						name = "JavaSE-21",
-						path = "~/java/amazon-corretto-21.jdk",
+						path = "/usr/lib/jvm/java-21-openjdk/",
 					},
 					{
 						name = "JavaSE-17",
-						path = "~/java/amazon-corretto-17.jdk",
+						path = "/usr/lib/jvm/java-17-openjdk/",
 					},
 					{
 						name = "JavaSE-11",
-						path = "~/java/amazon-corretto-11.jdk",
+						path = "/usr/lib/jvm/java-11-openjdk/",
 					},
 					{
-						name = "JavaSE-8",
-						path = "~/java/amazon-corretto-8.jdk",
+						name = "JavaSE-1.8",
+						path = "/usr/lib/jvm/java-8-openjdk/",
 					},
 				},
 			},

@@ -1,5 +1,10 @@
 return {
-	{ "williamboman/mason.nvim", opts = {} },
+	{
+		"williamboman/mason.nvim",
+		opts = {
+			ui = { icons = { package_installed = "", package_uninstalled = "", package_pending = "" } },
+		},
+	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
@@ -9,6 +14,7 @@ return {
 				end,
 				rust_analyzer = function() end,
 				jdtls = function() end,
+				typos_lsp = function() end,
 			},
 		},
 	},

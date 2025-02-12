@@ -32,6 +32,9 @@ return {
 					haskell = { "ormolu" },
 				},
 				formatters = {
+					["google-java-format"] = {
+						args = { "-a", "-" },
+					},
 					leptosfmt = {
 						command = "leptosfmt",
 						args = { "--stdin" },
