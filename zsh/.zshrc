@@ -1,7 +1,10 @@
+alias fortune=misfortune
+
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/go/bin:$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.atuin/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export RIOSDK_PATH="$HOME/roborio-toolchain"
 export PATH="$RIOSDK_PATH/bin:$PATH"
@@ -10,13 +13,6 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
 export PATH="$HOME/neovim/bin:$PATH"
-
-alias java8="export PATH=\"$HOME/java/amazon-corretto-8.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-8.jdk/\""
-alias java11="export PATH=\"$HOME/java/amazon-corretto-11.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-11.jdk/\""
-alias java17="export PATH=\"$HOME/java/amazon-corretto-17.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-17.jdk/\""
-alias java21="export PATH=\"$HOME/java/amazon-corretto-21.jdk/bin:$PATH\" && export JAVA_HOME=\"$HOME/java/amazon-corretto-21.jdk/\""
-
-java21
 
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -44,5 +40,3 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 
 fortune -s -n 40
-
-. "$HOME/.atuin/bin/env"
