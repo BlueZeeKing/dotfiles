@@ -7,40 +7,22 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "custom/power",
         "hyprland/workspaces",
+        "mpris",
     ],
     "modules-center": [
         "clock",
     ],
     "modules-right": [
         "tray",
-        "pulseaudio",
-        "network",
         "power-profiles-daemon",
         "idle_inhibitor",
-        "cpu",
-        "memory",
-        "temperature",
+        "bluetooth",
+        "pulseaudio",
         "backlight",
-        "battery"
+        "battery",
     ],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -50,15 +32,17 @@
             "unlocked": ""
         }
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
+    "bluetooth": {
+        "on-click": "blueman-manager",
+	"format-connected": "󰂱",
+	"format-connected-battery": "󰂱 {device_battery_percentage}%",
+	"format-on": "󰂯",
+	"format-off": "󰂲",
+	"format-disabled": "󰂲",
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -101,9 +85,14 @@
         "format": "{:%I:%M %p}",
         "format-alt": "{:%A, %d %B}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "smooth-scrolling-threshold": 10,
+        "calendar": {
+            "mode-mon-col": 3,
+        },
         "actions": {
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down",
+            "on-click-right": "mode",
         },
     },
     "cpu": {
@@ -158,7 +147,7 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} 󱎔",
+        "format-ethernet": "ethernet 󱎔",
         "tooltip-format": "{ifname} via {gwaddr} 󱚾",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -166,10 +155,10 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": " {icon} ",
+        "format-muted": " ",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -181,6 +170,7 @@
             "car": "",
             "default": ["", "", ""]
         },
+        "tooltip-format": "{format_source}",
         "on-click": "pavucontrol"
     },
     "custom/media": {
@@ -196,15 +186,27 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
+        "format" : "󰣇",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        "menu-actions": {
+            "shutdown": "systemctl poweroff",
+            "reboot": "systemctl reboot",
+            "suspend": "systemctl suspend",
+            "logout": "loginctl terminate-user $USER",
+            "lock": "loginctl lock-session"
+        }
+    },
+    "mpris": {
+        "format": "{status_icon}{dynamic}",
+        "tooltip-format": "{player} ({status}):\n{title}\n{album} - {artist}\n{position}/{length}",
+        "dynamic-order": ["title", "artist", "album"],
+        "dynamic-importance-order": ["title", "artist", "album"],
+        "dynamic-len": 30,
+        "status-icons": {
+            "paused": "󰏤 ",
+            "stopped": "󰏧 "
+        }
     }
 }
