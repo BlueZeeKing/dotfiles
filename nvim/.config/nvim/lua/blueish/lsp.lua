@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
 		vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 		vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	end,
@@ -21,63 +22,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require("lspconfig").tailwindcss.setup({
 	filetypes = {
-		"aspnetcorerazor",
-		"astro",
-		"astro-markdown",
-		"blade",
-		"clojure",
-		"django-html",
-		"htmldjango",
-		"edge",
-		"eelixir",
-		"elixir",
-		"ejs",
-		"erb",
-		"eruby",
-		"gohtml",
-		"gohtmltmpl",
-		"haml",
-		"handlebars",
-		"hbs",
-		"html",
-		"html-eex",
-		"heex",
-		"jade",
-		"leaf",
-		"liquid",
-		"markdown",
-		"mdx",
-		"mustache",
-		"njk",
-		"nunjucks",
-		"php",
-		"razor",
-		"slim",
-		"twig",
-		"css",
-		"less",
-		"postcss",
-		"sass",
-		"scss",
-		"stylus",
-		"sugarss",
-		"javascript",
-		"javascriptreact",
-		"reason",
-		"rescript",
-		"typescript",
-		"typescriptreact",
-		"vue",
-		"svelte",
-		"templ",
 		"rust",
 	},
-	init_options = {
-		userLanguages = {
-			eelixir = "html-eex",
-			eruby = "erb",
-			templ = "html",
-			rust = "html",
+	settings = {
+		tailwindCSS = {
+			includeLanguages = {
+				rust = "html",
+			},
 		},
 	},
 	root_dir = function(fname)
@@ -88,36 +39,13 @@ require("lspconfig").tailwindcss.setup({
 			"tailwind.config.ts"
 		)(fname)
 	end,
-	settings = {
-		tailwindCSS = {
-			includeLanguages = {
-				rust = "html",
-			},
-			classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-			lint = {
-				cssConflict = "warning",
-				invalidApply = "error",
-				invalidConfigPath = "error",
-				invalidScreen = "error",
-				invalidTailwindDirective = "error",
-				invalidVariant = "error",
-				recommendedVariantOrder = "warning",
-			},
-			validate = false,
-		},
-	},
 })
 
-require("lspconfig").typos_lsp.setup({
-	-- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-	cmd_env = { RUST_LOG = "error" },
-	init_options = {
-		-- Custom config. Used together with a config file found in the workspace or its parents,
-		-- taking precedence for settings declared in both.
-		-- Equivalent to the typos `--config` cli argument.
-		config = "~/code/typos-lsp/crates/typos-lsp/tests/typos.toml",
-		-- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
-		-- Defaults to error.
-		diagnosticSeverity = "Warning",
-	},
+require("lspconfig").typos_lsp.setup({})
+require("lspconfig").hls.setup({})
+require("lspconfig").clangd.setup({})
+require("lspconfig").pyright.setup({})
+require("lspconfig").ts_ls.setup({})
+require("lspconfig").elixirls.setup({
+	cmd = { "/usr/bin/elixir-ls" },
 })

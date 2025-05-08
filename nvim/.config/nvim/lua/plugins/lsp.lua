@@ -1,37 +1,29 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		opts = {
-			ui = { icons = { package_installed = "", package_uninstalled = "", package_pending = "" } },
-		},
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			handlers = {
-				function(server_name)
-					require("lspconfig")[server_name].setup({})
-				end,
-				rust_analyzer = function() end,
-				jdtls = function() end,
-				typos_lsp = function() end,
-			},
-		},
-	},
 	{ "neovim/nvim-lspconfig" },
 	{
 		"saghen/blink.cmp",
 		version = "*",
 		opts = {
-			keymap = { preset = "super-tab" },
-			sources = { cmdline = {} },
+			fuzzy = { implementation = "rust" },
+			keymap = {
+				preset = "default",
+			},
 			signature = { enabled = true },
 			completion = { documentation = {
 				auto_show = true,
-				auto_show_delay_ms = 0,
+				auto_show_delay_ms = 1000,
 			} },
+			sources = {
+				default = { "github", "lsp", "path", "snippets", "buffer" },
+				providers = {
+					github = {
+						name = "GitHub Issues",
+						module = "blueish.completion",
+					},
+				},
+			},
 		},
-		opts_extend = { "sources.default" },
+		-- opts_extend = { "sources.default" },
 	},
 	{
 		"mrcjkb/rustaceanvim",
