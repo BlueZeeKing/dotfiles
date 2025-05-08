@@ -1,8 +1,5 @@
 return {
 	"tpope/vim-fugitive",
-	{ "kdheepak/lazygit.nvim", keys = {
-		{ "<leader>gg", "<cmd>LazyGit<cr>" },
-	} },
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function(_, _)
