@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+current_value=$(hyprctl getoption -j 'input:touchpad:disable_while_typing' | jq ".int")
+
+if [[ $current_value -eq 1 ]]; then
+    message=$(gum style --foreground=2 On)
+else
+    message=$(gum style --foreground=1 Off)
+fi
+
+if [[ $1 == "toggle" ]]; then
+    if [[ $current_value -eq 1 ]]; then
+        message=$(gum style --foreground=1 Off)
+        hyprctl -q keyword input:touchpad:disable_while_typing false
+    else
+        message=$(gum style --foreground=2 On)
+        hyprctl -q keyword input:touchpad:disable_while_typing true
+    fi
+    echo Toggled palm rejection $(gum style --faint :) $message
+elif [[ $1 == "set" ]]; then
+    if [[ $2 == "true" ]]; then
+        message=$(gum style --foreground=2 On)
+        hyprctl -q keyword input:touchpad:disable_while_typing true
+    else
+        message=$(gum style --foreground=1 Off)
+        hyprctl -q keyword input:touchpad:disable_while_typing false
+    fi
+    echo Set palm rejection $(gum style --faint :) $message
+else
+    echo Palm rejection status $(gum style --faint :) $message
+fi
