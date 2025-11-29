@@ -4,8 +4,8 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/waybar
-Restart=on-failure
+ExecStart=/usr/local/bin/bar
+Restart=always
 Slice=background-graphical.slice
 
 [Install]

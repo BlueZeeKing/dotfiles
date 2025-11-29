@@ -2,23 +2,26 @@ return {
 	{ "neovim/nvim-lspconfig" },
 	{
 		"saghen/blink.cmp",
+		dependencies = { {
+			"Kaiser-Yang/blink-cmp-git",
+		} },
 		version = "*",
 		opts = {
 			fuzzy = { implementation = "rust" },
 			keymap = {
 				preset = "default",
 			},
-			signature = { enabled = true },
 			completion = { documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 1000,
 			} },
 			sources = {
-				default = { "github", "lsp", "path", "snippets", "buffer" },
+				default = { "git", "lsp", "path", "snippets", "buffer" },
 				providers = {
-					github = {
-						name = "GitHub Issues",
-						module = "blueish.completion",
+					git = {
+						module = "blink-cmp-git",
+						name = "Git",
+						opts = {},
 					},
 				},
 			},
@@ -45,7 +48,6 @@ return {
 		},
 		config = function(_, opts)
 			require("fidget").setup(opts)
-			vim.notify = require("fidget").notify
 		end,
 	},
 	{

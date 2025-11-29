@@ -1,13 +1,14 @@
 alias fortune=misfortune
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$HOME/go/bin:$HOME/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
-export PATH="$HOME/.atuin/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+fpath=($fpath /usr/share/zsh/site-functions/)
+autoload -U compinit; compinit
 
-export RIOSDK_PATH="$HOME/roborio-toolchain"
-export PATH="$RIOSDK_PATH/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"

@@ -26,7 +26,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "arkav/lualine-lsp-progress" },
 		opts = {
 			options = {
 				component_separators = { left = "|", right = "|" },
@@ -64,5 +63,4 @@ return {
 			},
 		},
 	},
-	{ "arkav/lualine-lsp-progress" },
 }

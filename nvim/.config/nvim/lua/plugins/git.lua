@@ -13,17 +13,17 @@ return {
 						vim.keymap.set(mode, l, r, opts)
 					end
 
-					map("n", "<leader>vs", gs.stage_hunk)
-					map("n", "<leader>vr", gs.reset_hunk)
-					map("n", "<leader>vu", gs.undo_stage_hunk)
+					map("n", "<leader>vs", gs.stage_hunk, { desc = "Stage hunk" })
+					map("n", "<leader>vr", gs.reset_hunk, { desc = "Reset hunk" })
+					map("n", "<leader>vu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
 					map("v", "<leader>vs", function()
 						gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end)
+					end, { desc = "Stage hunk" })
 					map("v", "<leader>vr", function()
 						gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end)
-					map("n", "<leader>vS", gs.stage_buffer)
-					map("n", "<leader>vR", gs.reset_buffer)
+					end, { desc = "Reset hunk" })
+					map("n", "<leader>vS", gs.stage_buffer, { desc = "Stage buffer" })
+					map("n", "<leader>vR", gs.reset_buffer, { desc = "Reset buffer" })
 				end,
 			})
 		end,

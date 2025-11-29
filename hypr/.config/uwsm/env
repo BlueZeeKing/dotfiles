@@ -1,5 +1,6 @@
 export TERMINAL=/usr/bin/alacritty
 export XCURSOR_SIZE=24
+export GTK_THEME=Adwaita-dark
 export HYPRCURSOR_THEME=BreezeX-Dark-hyprcursor
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_QPA_PLATFORM=wayland

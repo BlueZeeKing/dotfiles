@@ -5,7 +5,7 @@ After=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/hypridle
-Restart=on-failure
+Restart=always
 Slice=background-graphical.slice
 
 [Install]
