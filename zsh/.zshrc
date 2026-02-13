@@ -39,5 +39,6 @@ function cdi {
 
 export EDITOR="nvim"
 export TERMINAL="alacritty"
+export MANPAGER='nvim +Man!'
 
 fortune -s -n 40

@@ -5,12 +5,8 @@ dap.adapters.gdb = {
 	args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
 }
 dap.adapters.codelldb = {
-	type = "server",
-	port = "${port}",
-	executable = {
-		command = "/home/braydenzee/.local/share/nvim/mason/bin/codelldb",
-		args = { "--port", "${port}" },
-	},
+  type = "executable",
+  command = "codelldb",
 }
 
 dap.configurations.cpp = {
@@ -47,14 +43,56 @@ dap.configurations.cpp = {
 		end,
 		cwd = "${workspaceFolder}",
 	},
+}
+
+dap.configurations.c = {
 	{
-		name = "Launch file (lldb)",
-		type = "codelldb",
+		name = "Launch",
+		type = "gdb",
 		request = "launch",
 		program = function()
 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 		end,
 		cwd = "${workspaceFolder}",
-		stopOnEntry = false,
+		stopAtBeginningOfMainSubprogram = false,
 	},
+	{
+		name = "Select and attach to process",
+		type = "gdb",
+		request = "attach",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		pid = function()
+			local name = vim.fn.input("Executable name (filter): ")
+			return require("dap.utils").pick_process({ filter = name })
+		end,
+		cwd = "${workspaceFolder}",
+	},
+	{
+		name = "Attach to gdbserver :1234",
+		type = "gdb",
+		request = "attach",
+		target = "localhost:1234",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+	},
+}
+
+
+dap.configurations.rust = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = { "--no-daemon" }, -- provide arguments if needed
+    sourceLanguages = { "rust" }
+  },
 }

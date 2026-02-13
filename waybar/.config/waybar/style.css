@@ -1,156 +1,132 @@
-@define-color black #0e1013;
-@define-color bg0 #1f2329;
-@define-color bg1 #282c34;
-@define-color bg2 #30363f;
-@define-color bg3 #323641;
-@define-color bg_d #181b20;
-@define-color bg_blue #61afef;
-@define-color bg_yellow #e8c88c;
-@define-color fg #a0a8b7;
-@define-color purple #bf68d9;
-@define-color green #8ebd6b;
-@define-color orange #cc9057;
-@define-color blue #4fa6ed;
-@define-color yellow #e2b86b;
-@define-color cyan #48b0bd;
-@define-color red #e55561;
-@define-color grey #535965;
-@define-color light_grey #7a818e;
-@define-color dark_cyan #266269;
-@define-color dark_red #8b3434;
-@define-color dark_yellow #835d1a;
-@define-color dark_purple #7e3992;
-@define-color diff_add #272e23;
-@define-color diff_delete #2d2223;
-@define-color diff_change #172a3a;
-@define-color diff_text #274964;
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
 
-* {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 13px;
-    color: lighter(lighter(@fg));
+.background {
+  background: none;
 }
 
-#waybar {
-    background-color: transparent;
-    border-bottom: transparent;
+tooltip.background {
+  border: 1px solid @surface1;
+  background-color: @mantle;
+  border-radius: 10px;
 }
 
-.modules-left {
-    padding-left: 4px;
+button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  padding: 1px;
 }
 
-.modules-right {
-    padding-right: 4px;
+button:hover {
+  background: @surface0;
 }
 
-.module {
-    background-color: @bg0;
-    border-radius: 7px;
-    border: 1px solid darker(darker(@fg));
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 1px 8px;
-}
-
-#idle_inhibitor, #power-profiles-daemon {
-    padding-right: 14px;
-}
-
-#idle_inhibitor.activated {
-}
-
-#battery, #backlight, #pulseaudio, #custom-power {
-    padding-right: 11px;
-}
-
-#battery.discharging {
-    padding-right: 14px;
-}
-
-#workspaces {
-    padding: 2px; 
-    padding-right: 0px;
+#waybar > box {
+  background-color: @mantle;
+  color: @text;
+  border-radius: 10px;
+  margin: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #workspaces button {
-    padding: 0 4px;
-    border: none;
-    background-color: transparent;
-    border-radius: 5px;
-    margin-right: 2px;
+  font-family: Material Symbols Rounded;
+  font-weight: 900;
+  font-size: 14px;
+  background: none;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 50%;
+  color: @text;
+  padding-right: 7px;
+}
+
+#workspaces button.empty {
+  color: @surface0;
 }
 
 #workspaces button.active {
-    background-color: lighter(lighter(@bg1));
-}
-
-#workspaces button:hover {
-    background: lighter(lighter(@bg3));
-}
-
-#workspaces button.urgent {
-    background-color: @dark_red;
+  font-family: Material Symbols Rounded Filled;
+  color: @text;
 }
 
 #battery {
-    border-color: darker(@green);
-}
-
-#battery.plugged {
-    color: mix(lighter(@green), lighter(lighter(@fg)), 0.5);
-}
-
-#battery.charging {
-    color: lighter(@green);
-}
-
-#battery.critical:not(.charging) {
-    border-color: @dark_red;
-    background: mix(@dark_red, @bg0, 0.6);
-    color: lighter(@red);
+  font-family: Material Symbols Rounded Filled;
+  font-size: 20px;
+  color: @green;
+  border-radius: 50%;
 }
 
 #backlight {
-    border-color: darker(@orange);
+  font-family: Material Symbols Rounded Filled;
+  font-size: 15px;
+  color: @sky;
+  border-radius: 50%;
+}
+
+#custom-spacer {
+  padding-left: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: @surface1;
+}
+
+#wireplumber {
+  color: @yellow;
+  font-family: Material Symbols Rounded Filled;
+  font-size: 20px;
 }
 
 #bluetooth {
-    border-color: darker(@blue);
-}
-
-#custom-power {
-    border-color: darker(@blue);
-}
-
-#tray {
-    border-color: darker(@purple);
-}
-
-#pulseaudio {
-    border-color: darker(@yellow);
-}
-
-#pulseaudio.muted {
-    padding-right: 7px;
-}
-
-#idle_inhibitor {
-    border-color: darker(@cyan);
-}
-
-#idle_inhibitor.activated {
-    background: lighter(@bg3);
-    padding-right: 13px;
-    padding-left: 9px;
+  color: @blue;
+  font-family: Material Symbols Rounded Filled;
+  font-size: 20px;
 }
 
 #power-profiles-daemon {
-    border-color: darker(@red);
+  color: @maroon;
+  font-family: Material Symbols Rounded Filled;
+  font-size: 20px;
 }
 
-tooltip {
-    background-color: alpha(@bg0, .95);
-    border-radius: 7px;
-    border: 1px solid darker(darker(@fg));
+#idle_inhibitor {
+  color: @mauve;
+  font-family: Material Symbols Rounded Filled;
+  font-size: 16px;
+}
+
+#custom-power {
+  font-family: Material Symbols Rounded Filled;
+  font-size: 20px;
+}
+
+#tray > * {
+    background: none;
 }

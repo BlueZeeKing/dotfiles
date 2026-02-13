@@ -70,66 +70,27 @@ return {
 		},
 	},
 	{
-		"mfussenegger/nvim-dap",
-		keys = {
-			{
-				"<leader>dl",
-				function()
-					require("dap").step_into()
-				end,
-			},
-			{
-				"<leader>dj",
-				function()
-					require("dap").step_over()
-				end,
-			},
-			{
-				"<leader>dh",
-				function()
-					require("dap").step_out()
-				end,
-			},
-			{
-				"<leader>db",
-				function()
-					require("dap").toggle_breakpoint()
-				end,
-			},
-			{
-				"<leader>dc",
-				function()
-					require("dap").continue()
-				end,
-			},
-			{
-				"<leader>dq",
-				function()
-					require("dap").terminate()
-				end,
-			},
-			{
-				"<leader>dr",
-				function()
-					require("dap").repl.toggle()
-				end,
-			},
-			{
-				"<leader>dw",
-				function()
-					local widgets = require("dap.ui.widgets")
-					local left_bar = widgets.sidebar(widgets.frames, {}, "45 vsplit")
-					left_bar.open()
-					local right_bar = widgets.sidebar(widgets.scopes, {}, "belowright 45 vsplit")
-					right_bar.open()
-				end,
-			},
-			{
-				"<leader>dk",
-				function()
-					require("dap.ui.widgets").hover()
-				end,
-			},
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
 		},
+		config = function(_, opts)
+			require("dapui").setup()
+
+			local dap, dapui = require("dap"), require("dapui")
+			dap.listeners.before.attach.dapui_config = function()
+			  dapui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+			  dapui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+			  dapui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+			  dapui.close()
+			end
+		end,
 	},
 }

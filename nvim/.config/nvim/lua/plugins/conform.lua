@@ -32,6 +32,8 @@ return {
 					haskell = { "ormolu" },
 					elixir = { "mix" },
 					-- vala = { "uncrustify" },
+					-- c = { "clang-format" },
+					cpp = { "clang-format" },
 				},
 				formatters = {
 					["google-java-format"] = {
