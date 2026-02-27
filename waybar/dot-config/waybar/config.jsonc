@@ -17,6 +17,7 @@
     "modules-right": [
         "tray",
         "custom/spacer",
+        "network",
         "bluetooth",
         "wireplumber",
         "custom/spacer",
@@ -26,6 +27,15 @@
         "backlight",
         "battery",
     ],
+    "network": {
+        "interface": "wlan0",
+        "format": "{icon}",
+        "tooltip-format": "Connected to {essid}",
+        "format-disconnected": "wifi_off",
+        "tooltip-format-disconnected": "WiFi disconnected",
+        "format-icons": ["wifi_1_bar", "wifi_2_bar", "wifi"],
+        "on-click": "foot -a foot.float impala",
+    },
     "hyprland/workspaces": {
         "all-outputs": true,
         "format": "{icon}",
@@ -38,7 +48,7 @@
         },
     },
     "bluetooth": {
-        "on-click": "walker -m bluetooth",
+        "on-click": "foot -a foot.float bluetui",
 	"format-connected": "bluetooth_connected",
 	"format-on": "bluetooth",
 	"format-off": "bluetooth_disabled",
