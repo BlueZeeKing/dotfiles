@@ -38,10 +38,8 @@ vim.o.clipboard = "unnamedplus"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noselect,popup"
 
 vim.g.ouroboros_debug = 0
-
-vim.cmd.colorscheme("catppuccin-mocha")
 
 vim.api.nvim_set_hl(0, "MiniJump", vim.api.nvim_get_hl(0, { name = "Search" }))

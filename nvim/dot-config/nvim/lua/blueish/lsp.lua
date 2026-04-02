@@ -68,15 +68,14 @@ vim.lsp.config("texlab", {
 		},
 	},
 })
-vim.lsp.config("elixirls", {
-	cmd = { "/usr/bin/elixir-ls" },
-})
+-- vim.lsp.config("elixirls", {
+-- 	cmd = { "/usr/bin/elixir-ls" },
+-- })
 
 vim.lsp.enable("typos_lsp")
 vim.lsp.enable("hls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("pyright")
--- vim.lsp.enable("ty")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("elixirls")
 vim.lsp.enable("texlab")
