@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 
-stow --dotfiles alacritty
 stow --dotfiles atuin
-stow --dotfiles gh
-stow --dotfiles lazygit
 stow --dotfiles nvim
 stow --dotfiles scripts
 stow --dotfiles starship
@@ -12,8 +9,6 @@ stow --dotfiles zsh
 stow --dotfiles dunst
 stow --dotfiles hypr
 stow --dotfiles waybar
-stow --dotfiles wofi
-stow --dotfiles wlogout
 stow --dotfiles foot
 
 mkdir ~/zsh-plugins
