@@ -31,7 +31,7 @@ require("conform").setup({
 		elixir = { "mix" },
 		-- vala = { "uncrustify" },
 		-- c = { "clang-format" },
-		-- cpp = { "clang-format" },
+		cpp = { "clang-format" },
 	},
 	formatters = {
 		["google-java-format"] = {

@@ -32,11 +32,11 @@ vim.keymap.set("n", "<leader>ld", function()
 end, { desc = "Pick diagnostic info" })
 
 vim.keymap.set("n", "<leader>ss", function()
-	require("snacks").picker.lsp_workspace_symbol()
+	require("snacks").picker.lsp_workspace_symbols()
 end, { desc = "Pick from workspace symbols" })
 
 vim.keymap.set("n", "<leader>so", function()
-	require("snacks").picker.lsp_symbol()
+	require("snacks").picker.lsp_symbols()
 end, { desc = "Pick from file symbols" })
 
 vim.keymap.set("n", "<A-h>", function()
@@ -83,7 +83,7 @@ end)
 
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 vim.keymap.set("n", "<leader>pv", function()
-	require("oil").open_float()
+	require("mini.files").open()
 end)
 vim.keymap.set("n", "gh", function()
 	require("ouroboros").switch()

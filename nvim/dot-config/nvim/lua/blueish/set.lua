@@ -41,5 +41,6 @@ vim.o.smartcase = true
 vim.o.completeopt = "menuone,noselect,popup"
 
 vim.g.ouroboros_debug = 0
+vim.g.copilot_enabled = false
 
 vim.api.nvim_set_hl(0, "MiniJump", vim.api.nvim_get_hl(0, { name = "Search" }))
