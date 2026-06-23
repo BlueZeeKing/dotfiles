@@ -38,7 +38,8 @@ function cdi {
 }
 
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="foot"
 export MANPAGER='nvim +Man!'
+export NEWT_COLORS='root=default,default window=black,black border=white,black shadow=default,default title=white,black label=white,black listbox=white,black'
 
 fortune -s -n 40
