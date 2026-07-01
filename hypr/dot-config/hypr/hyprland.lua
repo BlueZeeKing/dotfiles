@@ -121,6 +121,7 @@ hl.env("HYPRCURSOR_THEME", "BreezeX-Dark-hyprcursor")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("EDITOR", "nvim")
 
 hl.window_rule({
 	match = { class = ".*" },
