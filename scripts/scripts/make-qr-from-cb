@@ -1,0 +1,3 @@
+#! /usr/bin/env zsh
+
+qrencode "$(wl-paste)" -s 15 -o - | feh --class feh.float -
