@@ -10,6 +10,9 @@ vim.pack.add({
 })
 
 require("blink.cmp").setup({
+	enabled = function()
+		return not vim.tbl_contains({ "minifiles" }, vim.bo.filetype)
+	end,
 	fuzzy = { implementation = "rust" },
 	keymap = {
 		preset = "default",
@@ -19,7 +22,7 @@ require("blink.cmp").setup({
 		auto_show_delay_ms = 1000,
 	} },
 	sources = {
-		default = { "git", "lsp", "path", "snippets", "buffer" },
+		default = { "lsp", "path", "snippets", "buffer" },
 		providers = {
 			git = {
 				module = "blink-cmp-git",
