@@ -1,0 +1,28 @@
+From a23bc43e387f3de3355de8947d2e4d0f2dc52873 Mon Sep 17 00:00:00 2001
+From: Brayden Zee <github@blueish.dev>
+Date: Mon, 23 Mar 2026 15:38:53 -0400
+Subject: [PATCH] Retry on unknown error
+
+---
+ src/auth/Fingerprint.cpp | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/auth/Fingerprint.cpp b/src/auth/Fingerprint.cpp
+index db4bba7..76a9727 100644
+--- a/src/auth/Fingerprint.cpp
++++ b/src/auth/Fingerprint.cpp
+@@ -164,7 +164,10 @@ void CFingerprint::handleVerifyStatus(const std::string& result, bool done) {
+             break;
+         case MATCH_UNKNOWN_ERROR:
+             stopVerify();
+-            m_sFailureReason = "Fingerprint auth disabled (unknown error)";
++            done                         = false;
++            static const auto RETRYDELAY = g_pConfigManager->getValue<Hyprlang::INT>("auth:fingerprint:retry_delay");
++            g_pHyprlock->addTimer(std::chrono::milliseconds(*RETRYDELAY), [](ASP<CTimer> self, void* data) { ((CFingerprint*)data)->startVerify(false); }, this);
++            m_sFailureReason = "Unknown error";
+             break;
+         case MATCH_MATCHED:
+             stopVerify();
+-- 
+2.54.0
+

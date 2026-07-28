@@ -1,0 +1,50 @@
+From ba534e4e7bdd65fa5e3126743466528141df4d6e Mon Sep 17 00:00:00 2001
+From: Brayden Zee <github@blueish.dev>
+Date: Wed, 1 Jul 2026 12:41:23 -0400
+Subject: [PATCH 3/3] Add configurable padding
+
+---
+ src/config/ConfigManager.cpp | 2 ++
+ src/ui/UI.cpp                | 6 ++++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/config/ConfigManager.cpp b/src/config/ConfigManager.cpp
+index 7ac9de6..1d517e7 100644
+--- a/src/config/ConfigManager.cpp
++++ b/src/config/ConfigManager.cpp
+@@ -31,6 +31,8 @@ CConfigManager::CConfigManager() : m_inotifyFd(inotify_init()) {
+ 
+     m_config->addConfigValue("ui:window_size", Hyprlang::VEC2{400, 260});
+     m_config->addConfigValue("ui:border_size", Hyprlang::INT{1});
++    m_config->addConfigValue("ui:gap_size", Hyprlang::INT{4});
++    m_config->addConfigValue("ui:margin_size", Hyprlang::FLOAT{4});
+ 
+     m_config->commence();
+ 
+diff --git a/src/ui/UI.cpp b/src/ui/UI.cpp
+index 5916ee4..5b22f64 100644
+--- a/src/ui/UI.cpp
++++ b/src/ui/UI.cpp
+@@ -20,6 +20,8 @@ CUI::CUI(bool open) : m_openByDefault(open) {
+     static auto PGRABFOCUS  = Hyprlang::CSimpleConfigValue<Hyprlang::INT>(g_configManager->m_config.get(), "general:grab_focus");
+     static auto PWINDOWSIZE = Hyprlang::CSimpleConfigValue<Hyprlang::VEC2>(g_configManager->m_config.get(), "ui:window_size");
+     static auto PBORDERSIZE = Hyprlang::CSimpleConfigValue<Hyprlang::INT>(g_configManager->m_config.get(), "ui:border_size");
++    static auto PGAPSIZE = Hyprlang::CSimpleConfigValue<Hyprlang::INT>(g_configManager->m_config.get(), "ui:gap_size");
++    static auto PMARGINSIZE = Hyprlang::CSimpleConfigValue<Hyprlang::FLOAT>(g_configManager->m_config.get(), "ui:margin_size");
+ 
+     m_backend = Hyprtoolkit::IBackend::create();
+ 
+@@ -33,8 +35,8 @@ CUI::CUI(bool open) : m_openByDefault(open) {
+     m_background->setAbsolutePosition({1, 1});
+ 
+     m_layout =
+-        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})->gap(4)->commence();
+-    m_layout->setMargin(4);
++        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})->gap(*PGAPSIZE)->commence();
++    m_layout->setMargin(*PMARGINSIZE);
+ 
+     m_inputBox = Hyprtoolkit::CTextboxBuilder::begin()
+                      ->placeholder(I18n::localize(I18n::TXT_KEY_SEARCH_SOMETHING, {}))
+-- 
+2.54.0
+

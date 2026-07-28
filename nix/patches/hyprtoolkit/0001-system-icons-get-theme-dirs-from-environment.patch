@@ -1,0 +1,137 @@
+From ae47e6991dcfdc0c2281e95a722c0dae0c00a081 Mon Sep 17 00:00:00 2001
+From: Brayden Zee <github@blueish.dev>
+Date: Tue, 30 Jun 2026 00:15:01 -0400
+Subject: [PATCH] system/icons: get theme dirs from environment
+
+---
+ src/helpers/Env.cpp  |  9 +++++++++
+ src/helpers/Env.hpp  |  2 ++
+ src/system/Icons.cpp | 37 +++++++++++++++++++++++++++++--------
+ 3 files changed, 40 insertions(+), 8 deletions(-)
+
+diff --git a/src/helpers/Env.cpp b/src/helpers/Env.cpp
+index 00a11f9..92ad645 100644
+--- a/src/helpers/Env.cpp
++++ b/src/helpers/Env.cpp
+@@ -1,6 +1,7 @@
+ #include "Env.hpp"
+ 
+ #include <cstdlib>
++#include <optional>
+ #include <string_view>
+ 
+ using namespace Hyprtoolkit;
+@@ -20,3 +21,11 @@ bool Hyprtoolkit::Env::isTrace() {
+     static bool TRACE = envEnabled("HT_TRACE");
+     return TRACE;
+ }
++
++std::optional<std::string_view> Hyprtoolkit::Env::getEnv(const std::string& env) {
++    auto ret = getenv(env.c_str());
++    if (!ret)
++        return std::nullopt;
++
++    return ret;
++}
+diff --git a/src/helpers/Env.hpp b/src/helpers/Env.hpp
+index fe4b137..e11f4a4 100644
+--- a/src/helpers/Env.hpp
++++ b/src/helpers/Env.hpp
+@@ -1,8 +1,10 @@
+ #pragma once
+ 
++#include <optional>
+ #include <string>
+ 
+ namespace Hyprtoolkit::Env {
+     bool envEnabled(const std::string& env);
+     bool isTrace();
++    std::optional<std::string_view> getEnv(const std::string& env);
+ }
+diff --git a/src/system/Icons.cpp b/src/system/Icons.cpp
+index 094f8d3..23e592f 100644
+--- a/src/system/Icons.cpp
++++ b/src/system/Icons.cpp
+@@ -1,6 +1,8 @@
+ #include "Icons.hpp"
+ #include "../helpers/Memory.hpp"
+ #include "../core/InternalBackend.hpp"
++#include "helpers/Env.hpp"
++#include "hyprtoolkit/core/LogTypes.hpp"
+ 
+ #include <optional>
+ #include <cstdlib>
+@@ -11,6 +13,7 @@
+ #include <hyprutils/string/ConstVarList.hpp>
+ #include <hyprutils/string/VarList2.hpp>
+ #include <hyprutils/utils/ScopeGuard.hpp>
++#include <ranges>
+ 
+ extern "C" {
+ #include "iniparser.h"
+@@ -33,9 +36,27 @@ static std::optional<std::string> readFileAsString(const std::string& path) {
+     return trim(std::string((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>())));
+ }
+ 
+-static const std::array<const char*, 4> ICON_THEME_DIRS = {"/usr/share/icons", "/usr/local/share/icons", "~/.icons", "~/.local/share/icons"};
++static std::vector<std::string> getXDGIconThemeDirsFromEnv() {
++    auto dataDirs    = Env::getEnv("XDG_DATA_DIRS").value_or("/usr/local/share/:/usr/share/");
++    auto dataHomeDir = std::string(Env::getEnv("XDG_DATA_HOME").value_or("~/.local/share/"));
+ 
+-static std::string                      fromDir(const char* p) {
++    auto dirs = dataDirs | std::views::split(':') | std::ranges::to<std::vector<std::string>>();
++
++    dirs.insert(dirs.begin(), dataHomeDir);
++
++    for (auto& dir : dirs) {
++        dir.append("/icons");
++    }
++
++    return dirs;
++}
++
++static std::vector<std::string> getXDGIconThemeDirs() {
++    static const std::vector<std::string> ICON_THEME_DIRS = getXDGIconThemeDirsFromEnv();
++    return ICON_THEME_DIRS;
++}
++
++static std::string fromDir(const char* p) {
+     static auto HOME_ENV = getenv("HOME");
+ 
+     if (p[0] == '~') {
+@@ -53,8 +74,8 @@ static std::string                      fromDir(const char* p) {
+ static std::optional<std::vector<std::string>> getThemeDir(const std::string& name) {
+     std::vector<std::string> results;
+ 
+-    for (const auto& rawDir : ICON_THEME_DIRS) {
+-        auto            path = fromDir(rawDir) + "/" + name;
++    for (const auto& rawDir : getXDGIconThemeDirs()) {
++        auto            path = fromDir(rawDir.c_str()) + "/" + name;
+ 
+         std::error_code ec;
+         if (!std::filesystem::exists(path + "/index.theme", ec) || ec) {
+@@ -70,8 +91,8 @@ static std::optional<std::vector<std::string>> getThemeDir(const std::string& na
+ 
+ static std::optional<std::vector<std::string>> findAnyTheme() {
+     // first, try to find the default system theme
+-    for (const auto& rawDir : ICON_THEME_DIRS) {
+-        auto            path = fromDir(rawDir) + "/default/index.theme";
++    for (const auto& rawDir : getXDGIconThemeDirs()) {
++        auto            path = fromDir(rawDir.c_str()) + "/default/index.theme";
+ 
+         std::error_code ec;
+         if (!std::filesystem::exists(path) || ec) {
+@@ -109,8 +130,8 @@ static std::optional<std::vector<std::string>> findAnyTheme() {
+             g_logger->log(HT_LOG_TRACE, "CSystemIconFactory: Skipping {}, doesn't inherit an icon theme", path);
+     }
+ 
+-    for (const auto& rawDir : ICON_THEME_DIRS) {
+-        auto            path = fromDir(rawDir) + "/";
++    for (const auto& rawDir : getXDGIconThemeDirs()) {
++        auto            path = fromDir(rawDir.c_str()) + "/";
+ 
+         std::error_code ec;
+         if (!std::filesystem::exists(path) || ec) {
+-- 
+2.54.0
+

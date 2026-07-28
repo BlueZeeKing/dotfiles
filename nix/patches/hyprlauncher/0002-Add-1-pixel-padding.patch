@@ -1,0 +1,36 @@
+From 9ed5346a90b373d9698bd1781182906d7819c75c Mon Sep 17 00:00:00 2001
+From: Brayden Zee <github@blueish.dev>
+Date: Wed, 1 Jul 2026 12:23:18 -0400
+Subject: [PATCH 2/3] Add 1 pixel padding
+
+---
+ src/ui/UI.cpp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/ui/UI.cpp b/src/ui/UI.cpp
+index 6967ae3..5916ee4 100644
+--- a/src/ui/UI.cpp
++++ b/src/ui/UI.cpp
+@@ -28,8 +28,9 @@ CUI::CUI(bool open) : m_openByDefault(open) {
+                        ->rounding(m_backend->getPalette()->m_vars.bigRounding)
+                        ->borderColor([this] { return m_backend->getPalette()->m_colors.accent.darken(0.2F); })
+                        ->borderThickness(*PBORDERSIZE)
+-                       ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})
++                       ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {(*PWINDOWSIZE).x, (*PWINDOWSIZE).y}})
+                        ->commence();
++    m_background->setAbsolutePosition({1, 1});
+ 
+     m_layout =
+         Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})->gap(4)->commence();
+@@ -70,7 +71,7 @@ CUI::CUI(bool open) : m_openByDefault(open) {
+     m_window = Hyprtoolkit::CWindowBuilder::begin()
+                    ->appClass("hyprlauncher")
+                    ->type(Hyprtoolkit::HT_WINDOW_LAYER)
+-                   ->preferredSize({(*PWINDOWSIZE).x, (*PWINDOWSIZE).y})
++                   ->preferredSize({(*PWINDOWSIZE).x + 2, (*PWINDOWSIZE).y + 2})
+                    ->anchor(1 | 2 | 4 | 8)
+                    ->exclusiveZone(-1)
+                    ->layer(3)
+-- 
+2.54.0
+
