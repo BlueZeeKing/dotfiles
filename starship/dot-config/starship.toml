@@ -1,4 +1,4 @@
-format = "$sudo$directory$git_branch$rust$java$cmd_duration$character"
+format = "$sudo$directory$nix_shell$git_branch$rust$java$cmd_duration$character"
 
 [character]
 success_symbol = '[➜](bold green)'
@@ -15,3 +15,6 @@ symbol = "☕"
 format = "[$symbol ]($style)"
 symbol = "🔒"
 disabled = true
+
+[nix_shell]
+symbol = " "

@@ -1,0 +1,9 @@
+[mgr]
+prepend_keymap = [
+  # { on = "p", run = "plugin ucp paste", desc = "Paste" },
+  # { on = "y", run = "plugin ucp copy", desc = "Copy" },
+  { on = "<C-n>", run = "shell -- dragon-drop -x -i -T %h" },
+  { on = "K", run = "plugin toggle-pane min-preview" },
+  { on = "H", run = "plugin toggle-pane min-parent" },
+  { on = "<Enter>", run = "plugin smart-enter" },
+]

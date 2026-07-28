@@ -1,0 +1,10 @@
+[preview]
+max_width = 1000
+max_height = 1000
+
+[opener]
+zen = [{ run = "zen-browser %s", desc = "Open in zen" }]
+f3d = [{ run = "f3d %s", desc = "Open in f3d" }]
+
+[open]
+prepend_rules = [{ url = "*.pdf", use = "zen" }, { url = "*.obj", use = "f3d" }]

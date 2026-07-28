@@ -34,7 +34,7 @@
         "format-ethernet": "settings_ethernet",
         "tooltip-format-disconnected": "WiFi disconnected",
         "format-icons": ["wifi_1_bar", "wifi_2_bar", "wifi"],
-        "on-click": "~/scripts/open-nmtui",
+        "on-click": "bash -c 'foot -a foot.float impala'",
     },
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -48,7 +48,7 @@
         },
     },
     "bluetooth": {
-        "on-click": "foot -a foot.float bluetui",
+        "on-click": "bash -c 'foot -a foot.float bluetui'",
 	"format-connected": "bluetooth_connected",
 	"format-on": "bluetooth",
 	"format-off": "bluetooth_disabled",
