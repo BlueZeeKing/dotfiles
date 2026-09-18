@@ -1,3 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env nix
+#!nix shell nixpkgs#qrencode nixpkgs#wl-clipboard nixpkgs#feh --command bash
 
 qrencode "$(wl-paste)" -s 15 -o - | feh --class feh.float -

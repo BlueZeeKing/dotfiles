@@ -1,6 +1,6 @@
 hl.config({
 	cursor = {
-		no_hardware_cursors = 1,
+		no_hardware_cursors = 0,
 	},
 	input = {
 		kb_layout = "us",
@@ -44,8 +44,8 @@ hl.config({
 
 		blur = {
 			enabled = false,
-			size = 3,
-			passes = 1,
+			size = 5,
+			passes = 2,
 		},
 
 		shadow = {
@@ -114,14 +114,14 @@ hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" }
 hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
 hl.animation({ leaf = "fade", enabled = true, speed = 7, bezier = "default" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default" })
+hl.animation({ leaf = "layers", enabled = false })
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("GTK_THEME", "Adwaita-dark")
-hl.env("HYPRCURSOR_THEME", "BreezeX-Dark-hyprcursor")
+hl.env("HYPRCURSOR_THEME", "BreezeX Dark")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("EDITOR", "nvim")
 
 hl.window_rule({
 	match = { class = ".*" },
@@ -156,10 +156,22 @@ hl.window_rule({
 	tile = true,
 })
 
+hl.layer_rule({
+	match = { namespace = "selection" },
+	no_anim = true,
+})
+
+hl.layer_rule({
+	match = { namespace = "hyprtoolkit|hyprlauncher" },
+	blur = true,
+	ignore_alpha = 0.1,
+})
+
 hl.bind("SUPER + T", hl.dsp.exec_cmd("foot"))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
 hl.bind("SUPER + F", hl.dsp.exec_cmd("foot yazi"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("hyprlauncher"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd("foot -a foot.float /home/brayden/scripts/ask"))
 
 hl.bind("SUPER + Q", hl.dsp.window.kill())
 hl.bind("SUPER + Z", hl.dsp.window.fullscreen({ action = "toggle" }))
@@ -167,19 +179,19 @@ hl.bind("SUPER + Z", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(
 	"SUPER + S",
 	hl.dsp.exec_cmd(
-		'grimblast --notify copysave area "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").jpg"'
+		'grimblast --notify copysave area "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").png"'
 	)
 )
 hl.bind(
 	"SUPER + SHIFT + S",
 	hl.dsp.exec_cmd(
-		'grimblast --notify copysave output "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").jpg"'
+		'grimblast --notify copysave output "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").png"'
 	)
 )
 hl.bind(
 	"Print",
 	hl.dsp.exec_cmd(
-		'grimblast --notify copysave output "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").jpg"'
+		'grimblast --notify copysave output "/home/brayden/Documents/Screenshots/screenshot-$(date "+%m-%d-%Y-%H:%M:%S").png"'
 	)
 )
 
@@ -248,4 +260,5 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl start --user waybar")
 	hl.exec_cmd("systemctl start --user hypridle")
 	hl.exec_cmd("systemctl start --user hyprpaper")
+	hl.exec_cmd("systemctl start --user hyprpolkitagent")
 end)

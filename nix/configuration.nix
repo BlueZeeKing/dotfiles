@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, options, lib, pkgs, ... }:
+{ config, options, lib, pkgs, inputs, ... }:
 
 let
 
@@ -14,91 +14,10 @@ in
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      hyprtoolkit = prev.hyprtoolkit.overrideAttrs (final_attrs: prev_attrs: {
-        patches =
-          (prev_attrs.patches or [])
-          ++
-	  [ (lib.filesystem.listFilesRecursive ./patches/hyprtoolkit) ];
-      });
-      hyprlock = prev.hyprlock.overrideAttrs (final_attrs: prev_attrs: {
-        patches =
-          (prev_attrs.patches or [])
-          ++
-          [ (lib.filesystem.listFilesRecursive ./patches/hyprlock) ];
-      });
-      hyprlauncher = prev.hyprlauncher.overrideAttrs (final_attrs: prev_attrs: {
-        patches =
-          (prev_attrs.patches or [])
-	  ++
-	  [ (lib.filesystem.listFilesRecursive ./patches/hyprlauncher) ];
-      });
-      yazi-unwrapped = prev.yazi-unwrapped.overrideAttrs (final_attrs: prev_attrs: {
-        postInstall = ''
-          ${prev_attrs.postInstall}
-
-          for r in 16 24 32 48 64 128 256 512; do
-            install -Dm444 <(magick assets/logo.png -resize "''${r}x''${r}" -) "$out/share/icons/hicolor/''${r}x''${r}/apps/yazi.png"
-          done
-        '';
-        nativeBuildInputs = prev_attrs.nativeBuildInputs ++ [ final.imagemagick ];
-      });
-      slurp = prev.slurp.overrideAttrs (final_attrs: prev_attrs: {
-	src = prev.fetchFromGitHub {
-          owner = "emersion";
-          repo = "slurp";
-          rev = "a3998d3ec79fbd85b81911f43010466b032ed0d9";
-          hash = "sha256-9f5Y4D8zB42cUdqilfHkkmZW6yTCaDosCjABLnp/EFI=";
-        };
-      });
-
-      material-symbols-rounded-filled = final.stdenv.mkDerivation {
-        pname = "material-symbols-rounded-filled";
-        version = final.material-symbols.version;
-        src = final.fetchurl {
-          url = "https://raw.githubusercontent.com/fonttools/fonttools/41af9f64813b77ac426ae5cbb5fd47dbbd630803/Snippets/rename-fonts.py";
-          hash = "sha256-m/XSCNtvldKReV8Ecqwwedg9+Pr+9VA8vcca3Q1R4r0=";
-        };
-        nativeBuildInputs = [ final.material-symbols final.python314Packages.fonttools final.python314 final.installFonts ];
-
-        unpackPhase = ''
-          # do nothing
-        '';
-
-        buildPhase = ''
-          fonttools varLib.instancer ${final.material-symbols}/share/fonts/truetype/MaterialSymbolsRounded\[FILL,GRAD,opsz,wght\].ttf -o MaterialSymbolsRoundedFilled\[GRAD,opsz,wght\].ttf FILL=1
-          python3 $src -i -s " Filled" MaterialSymbolsRoundedFilled\[GRAD,opsz,wght\].ttf
-        '';
-      };
-      breezex-dark-cursor = final.stdenv.mkDerivation rec {
-        pname = "breezex-dark-cursor";
-        version = "2.0.1";
-        src = final.fetchzip {
-          url = "https://github.com/ful1e5/BreezeX_Cursor/releases/download/v2.0.1/BreezeX-Dark.tar.xz";
-          hash = "sha256-HqjO/ogAd/dsrO5WHIilUQaq1CbiU48lEaoefcUmmBM=";
-        };
-        nativeBuildInputs = [ final.hyprcursor final.xcur2png ];
-
-        unpackPhase = ''
-          mkdir extracted
-          hyprcursor-util --extract $src -o extracted
-        '';
-
-        buildPhase = ''
-          mkdir theme
-          hyprcursor-util --create "extracted/$(ls -1 extracted | head -n 1)" -o theme
-          mv "theme/$(ls -1 theme | head -n 1)" breezex_dark
-          echo -e "name = BreezeX Dark\ndescription = Automatically extracted with hyprcursor-util\nversion = ${version}\ncursors_directory = hyprcursors\n" > breezex_dark/manifest.hl
-        '';
-  
-        installPhase = ''
-          mkdir -p $out/share/icons
-          cp -r "breezex_dark/" $out/share/icons/
-        '';
-      };
-    })
-  ];
+  hardware.wirelessRegulatoryDatabase = true;
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom="US"
+  '';
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -122,6 +41,14 @@ in
 
   networking.wireless.iwd = {
     enable = true;
+  };
+
+  networking.openconnect.interfaces.openconnect0 = {
+    gateway = "webvpn.purdue.edu";
+    protocol = "anyconnect";
+    user = "bzee";
+    passwordFile = "/var/lib/secrets/openconnect-passwd";
+    autoStart = false;
   };
 
   # Set your time zone.
@@ -172,7 +99,7 @@ in
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
   # services.pulseaudio.enable = true;
@@ -186,6 +113,7 @@ in
   services.libinput.enable = true;
 
   services.fprintd.enable = true;
+  services.udisks2.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {
@@ -215,7 +143,7 @@ in
       '';
     shellAliases = {
       cd = "z";
-      nix-switch = "nixos-rebuild switch --flake /home/brayden/dotfiles/";
+      nix-switch = "sudo nixos-rebuild switch --flake /home/brayden/dotfiles/";
     };
   };
   programs.neovim.enable = true;
@@ -250,12 +178,19 @@ in
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
 
+  systemd.user.services.hypridle.path = with pkgs; [
+    brightnessctl
+  ];
   systemd.user.services.waybar.path = with pkgs; [
     bash
     foot
     impala
     bluetui
   ];
+
+  services.logind.settings.Login = {
+    HandlePowerKey = "suspend";
+  };
 
   # environment.etc.inputrc.text = ''
   #   ${builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>}
@@ -268,7 +203,6 @@ in
   environment.systemPackages = with pkgs; [
     fd
     ripgrep
-    hyprlauncher
     hyprpaper
     hyprcursor
     tree-sitter
@@ -287,6 +221,16 @@ in
     distrobox
     man-pages
     yazi
+    hyprpwcenter
+    git-lfs
+    inputs.hyprpolkitagent.packages.x86_64-linux.default
+    inputs.hyprlauncher.packages.x86_64-linux.default
+    wl-clipboard
+    localsend
+    prismlauncher
+    usbutils
+    gdb
+    btop
   ];
 
   xdg.icons.enable = true;
@@ -336,6 +280,25 @@ in
   networking.firewall.allowedUDPPorts = [ 53317 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  security.polkit.enable = true;
+  security.polkit.enablePkexecWrapper = true;
+
+  nixpkgs.config.rocmSupport = true;
+  systemd.tmpfiles.rules =
+    let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          rocblas
+          hipblas
+          clr
+        ];
+      };
+    in
+    [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
