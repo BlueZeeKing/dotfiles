@@ -103,6 +103,16 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./nix/configuration.nix
+        ./nix/bluetooth.nix
+        ./nix/boot.nix
+        ./nix/desktop.nix
+        ./nix/dev.nix
+        ./nix/networking.nix
+        ./nix/printing.nix
+        ./nix/sound.nix
+        ./nix/theme.nix
+        ./nix/user.nix
+        ./nix/virtualization.nix
 	{
           nixpkgs.overlays = [
             self.overlays.default
