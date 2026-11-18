@@ -1,6 +1,6 @@
 vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
-	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.0") },
+	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
 	"https://github.com/Kaiser-Yang/blink-cmp-git",
 	"https://github.com/mrcjkb/rustaceanvim",
 	"https://github.com/mfussenegger/nvim-jdtls",

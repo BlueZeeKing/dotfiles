@@ -1,17 +1,17 @@
 [[plugin.deps]]
 use = "simla33/ucp"
-rev = "96f54af"
-hash = "2011ef145f7d4aaa23cbc64c05cd6a7f"
+rev = "5ef8203"
+hash = "e9c94e81b3159dd283822811b0276367"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "88990a6"
-hash = "8a7c58225816a163a6e8730c0adafbc8"
+rev = "9166202"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "88990a6"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "9166202"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [flavor]
 deps = []

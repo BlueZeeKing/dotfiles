@@ -101,6 +101,7 @@ hl.monitor({
 	mode = "preferred",
 	position = "0x0",
 	scale = 1.333333333,
+	disabled = false,
 })
 
 hl.device({
@@ -168,12 +169,13 @@ hl.layer_rule({
 })
 
 hl.bind("SUPER + T", hl.dsp.exec_cmd("foot"))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("chromium"))
 hl.bind("SUPER + F", hl.dsp.exec_cmd("foot yazi"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("hyprlauncher"))
 hl.bind("SUPER + A", hl.dsp.exec_cmd("foot -a foot.float /home/brayden/scripts/ask"))
 
-hl.bind("SUPER + Q", hl.dsp.window.kill())
+hl.bind("SUPER + Q", hl.dsp.window.close())
+hl.bind("SUPER + ALT + Q", hl.dsp.window.kill())
 hl.bind("SUPER + Z", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 hl.bind(

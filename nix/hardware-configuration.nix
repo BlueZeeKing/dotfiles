@@ -34,12 +34,21 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/nvme0n1p1";
+    { device = "/dev/disk/by-uuid/ECE9-7828";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  fileSystems."/swap" =
+    { device = "/dev/mapper/root";
+      fsType = "btrfs";
+      options = [ "subvol=swap" "compress=zstd" ];
+    };
+
+  swapDevices = [{ 
+    device = "/swap/swapfile"; 
+    size = 8*1024;
+  }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

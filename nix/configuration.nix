@@ -6,7 +6,7 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  services.udev.packages = [ pkgs.openocd pkgs.teensy-udev-rules ];
+  services.udev.packages = [ pkgs.openocd pkgs.teensy-udev-rules pkgs.librealsense ];
 
   services.udisks2.enable = true;
 
@@ -22,6 +22,30 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
+
+  security.pki.caCertificateBlacklist = [
+  ];
+
+  systemd.timers."hello-world" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 14:30:00 America/New_York";
+      Unit = "hello-world.service";
+      WakeSystem = true;
+    };
+  };
+
+  systemd.services."hello-world" = {
+    script = ''
+      set -eu
+      ${pkgs.coreutils}/bin/echo "Hello World"
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+      RemainAfterExit = true; # Prevents the service from automatically starting on rebuild. See https://discourse.nixos.org/t/how-to-prevent-custom-systemd-service-from-restarting-on-nixos-rebuild-switch/43431
+    };
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

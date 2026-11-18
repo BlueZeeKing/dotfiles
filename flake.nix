@@ -231,7 +231,7 @@
       };
       hyprland = final: prev: {
         hyprland = prev.hyprland.override {
-          hyprland-qtutils = inputs.hyprland-guiutils.packages.x86_64-linux.default;
+          hyprland-guiutils = inputs.hyprland-guiutils.packages.x86_64-linux.default;
         };
       };
       default = lib.composeManyExtensions (lib.attrValues (builtins.removeAttrs self.overlays [ "default" ]));

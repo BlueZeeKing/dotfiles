@@ -1,3 +1,19 @@
+{ pkgs, lib, ... }:
+let
+  openScript = pkgs.writeShellScriptBin "open-browser" ''
+    uid=1000
+    user=brayden
+
+    export XDG_RUNTIME_DIR="/run/user/$uid"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
+    ${pkgs.util-linux}/bin/runuser -u "$user" -- \
+      ${pkgs.systemd}/bin/systemd-run --user \
+        --collect \
+        --unit=openconnect-browser \
+        ${pkgs.xdg-utils}/bin/xdg-open "$1"
+  '';
+in
 {
   hardware.wirelessRegulatoryDatabase = true;
 
@@ -14,12 +30,17 @@
       gateway = "webvpn.purdue.edu";
       protocol = "anyconnect";
       user = "bzee";
-      passwordFile = "/var/lib/secrets/openconnect-passwd";
       autoStart = false;
+      extraOptions = {
+        external-browser = "${openScript}/bin/open-browser";
+      };
     };
     firewall = {
-      allowedTCPPorts = [ 53317 ];
-      allowedUDPPorts = [ 53317 ];
+      enable = false;
+      allowedTCPPorts = [ 53317 8765 ];
+      allowedUDPPorts = [ 53317 8765 ];
     };
   };
+
+  systemd.services.openconnect-openconnect0.serviceConfig.ProtectHome = lib.mkForce false;
 }

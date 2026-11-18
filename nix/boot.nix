@@ -6,6 +6,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    zswap.enable = true;
   };
 
   services.greetd = {
